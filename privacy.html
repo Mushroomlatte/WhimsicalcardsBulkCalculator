@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Privacy Policy | Whimsical Cards</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <style>
+    :root {
+      --red: #e53935; --blue: #3b4cca; --yellow: #ffde00; --green: #4CAF50;
+      --bg-color: #f0f4f8; --card-bg: #ffffff; --text-color: #333333;
+      --light-gray: #e9ecef; --purple: #9c27b0; --orange: #ff6f00;
+    }
+    
+    * { box-sizing: border-box; }
+    
+    body {
+      font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto;
+      padding: 20px; line-height: 1.7; color: var(--text-color);
+      background-color: var(--bg-color);
+      background-image: url('https://www.transparenttextures.com/patterns/pokemon.png');
+    }
+    
+    .logo-container {
+      text-align: center; margin: 20px 0;
+    }
+    
+    .business-logo {
+      max-width: 220px; height: auto;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+    }
+    
+    nav {
+      text-align: center; margin: 25px 0; padding: 15px;
+      background: var(--blue); border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    nav a {
+      margin: 0 15px; color: white !important; text-decoration: none;
+      font-weight: bold; font-size: 1.1rem; transition: all 0.3s;
+    }
+    
+    nav a:hover {
+      color: var(--yellow) !important; transform: translateY(-2px);
+    }
+    
+    h1 {
+      text-align: center; font-size: 2.5rem; font-weight: 900;
+      margin: 20px 0; color: var(--blue);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    h2 {
+      font-size: 1.8rem; color: var(--blue);
+      border-bottom: 3px solid var(--yellow);
+      padding-bottom: 10px; margin-top: 40px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, var(--green), #2e7d32);
+      color: white; padding: 30px; text-align: center;
+      border-radius: 15px; margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .hero-section h2 {
+      color: white; margin: 0 0 15px 0; border: none;
+    }
+    
+    .hero-section p {
+      font-size: 1.1rem; margin: 10px 0;
+    }
+    
+    .last-updated {
+      text-align: center; font-style: italic; color: #666;
+      margin: 10px 0 30px 0; font-size: 1.1rem;
+      background: #fff3e0; padding: 10px; border-radius: 8px;
+    }
+    
+    .trust-badges {
+      display: flex; justify-content: center; gap: 30px;
+      flex-wrap: wrap; margin: 30px 0;
+    }
+    
+    .trust-badge {
+      background: var(--card-bg); padding: 20px 30px;
+      border-radius: 15px; text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      border: 2px solid var(--light-gray);
+      transition: all 0.3s;
+    }
+    
+    .trust-badge:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      border-color: var(--green);
+    }
+    
+    .trust-badge .icon {
+      font-size: 3rem; margin-bottom: 10px;
+    }
+    
+    .trust-badge h3 {
+      margin: 10px 0 5px 0; color: var(--blue);
+      font-size: 1.2rem;
+    }
+    
+    .trust-badge p {
+      margin: 0; color: #666; font-size: 0.95rem;
+    }
+    
+    .key-points {
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      padding: 25px; border-radius: 15px; margin: 30px 0;
+      border-left: 5px solid var(--blue);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .key-points h3 {
+      margin-top: 0; color: var(--blue); font-size: 1.5rem;
+    }
+    
+    .key-points ul {
+      margin: 15px 0; list-style: none; padding-left: 0;
+    }
+    
+    .key-points li {
+      margin: 12px 0; font-size: 1.05rem;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    
+    .key-points li::before {
+      content: '🔒'; flex-shrink: 0; font-size: 1.2rem;
+    }
+    
+    .policy-content {
+      background-color: var(--card-bg); padding: 30px;
+      border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 25px; border-left: 5px solid var(--blue);
+      transition: all 0.3s;
+    }
+    
+    .policy-content:hover {
+      transform: translateX(5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    
+    .data-table {
+      width: 100%; border-collapse: collapse;
+      margin: 20px 0; background: #f8f9fa;
+      border-radius: 10px; overflow: hidden;
+    }
+    
+    .data-table th {
+      background: var(--blue); color: white;
+      padding: 15px; text-align: left;
+    }
+    
+    .data-table td {
+      padding: 15px; border-bottom: 1px solid var(--light-gray);
+    }
+    
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .data-table tr:hover {
+      background: #e3f2fd;
+    }
+    
+    .info-box {
+      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      border-left: 5px solid var(--orange);
+      padding: 20px; margin: 25px 0; border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    
+    .info-box strong {
+      color: var(--orange); font-size: 1.2rem;
+      display: block; margin-bottom: 10px;
+    }
+    
+    .security-box {
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      border-left: 5px solid var(--green);
+      padding: 20px; margin: 25px 0; border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    
+    .security-box strong {
+      color: var(--green); font-size: 1.2rem;
+      display: block; margin-bottom: 10px;
+    }
+    
+    .icon {
+      display: inline-block; margin-right: 8px;
+      font-size: 1.2em;
+    }
+    
+    ul {
+      padding-left: 25px;
+    }
+    
+    li {
+      margin-bottom: 12px; line-height: 1.6;
+    }
+    
+    a {
+      color: var(--blue); text-decoration: none;
+      font-weight: bold; transition: all 0.3s;
+    }
+    
+    a:hover {
+      color: var(--red); text-decoration: underline;
+    }
+    
+    .contact-cta {
+      background: var(--card-bg); padding: 30px;
+      border-radius: 15px; text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border: 3px dashed var(--blue); margin: 30px 0;
+    }
+    
+    .contact-cta h3 {
+      color: var(--blue); margin-top: 0;
+      font-size: 1.8rem;
+    }
+    
+    .contact-cta a {
+      display: inline-block; background: var(--blue);
+      color: white; padding: 15px 40px;
+      border-radius: 10px; text-decoration: none;
+      font-size: 1.2rem; margin-top: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+    }
+    
+    .contact-cta a:hover {
+      background: var(--red); transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+    
+    footer {
+      text-align: center; padding: 20px 0;
+      margin-top: 40px; border-top: 2px solid var(--light-gray);
+      color: #666; font-size: 0.9em;
+    }
+    
+    footer a {
+      color: var(--blue); font-weight: bold;
+    }
+    
+    @media (max-width: 600px) {
+      body { padding: 10px; }
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.5rem; }
+      nav a { display: block; margin: 10px 0; }
+      .trust-badges { flex-direction: column; }
+      .data-table { font-size: 0.9rem; }
+      .data-table th, .data-table td { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="logo-container">
+    <img src="logo.png" alt="Whimsical Cards Logo" class="business-logo">
+  </div>
+
+  <nav>
+    <a href="index.html">Trade Calculator</a> |
+    <a href="contact.html">Contact</a> |
+    <a href="terms.html">T&Cs</a> |
+    <a href="privacy.html">Privacy Policy</a>
+  </nav>
+
+  <h1>🔒 Privacy Policy</h1>
+  
+  <div class="last-updated">
+    📅 Last updated: November 2025
+  </div>
+  
+  <div class="hero-section">
+    <h2>Your Privacy Matters! 🛡️</h2>
+    <p>We take your privacy seriously and believe in being transparent about how we handle your data.</p>
+    <p style="font-size: 1.2rem; margin-top: 15px;">
+      <strong>Bottom line: We only collect what we need, keep it secure, and NEVER sell your data.</strong>
+    </p>
+  </div>
+  
+  <div class="trust-badges">
+    <div class="trust-badge">
+      <div class="icon">🔐</div>
+      <h3>Secure Storage</h3>
+      <p>Your data is encrypted & protected</p>
+    </div>
+    <div class="trust-badge">
+      <div class="icon">🚫</div>
+      <h3>Never Sold</h3>
+      <p>We don't sell your information</p>
+    </div>
+    <div class="trust-badge">
+      <div class="icon">✅</div>
+      <h3>Full Control</h3>
+      <p>Request, edit, or delete anytime</p>
+    </div>
+  </div>
+  
+  <div class="key-points">
+    <h3><span class="icon">⚡</span>Quick Summary - What You Need to Know</h3>
+    <ul>
+      <li>We only collect info needed for orders and trades</li>
+      <li>Your data is stored securely and never sold to third parties</li>
+      <li>We share info only when necessary (e.g., with delivery services)</li>
+      <li>You can request, update, or delete your data anytime</li>
+      <li>We use secure payment processors (PayPal, bank transfers)</li>
+    </ul>
+  </div>
+
+  <div class="policy-content">
+    <h2><span class="icon">📋</span>1. What Information We Collect</h2>
+    
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Information Type</th>
+          <th>What We Collect</th>
+          <th>Why We Need It</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Contact Details</strong></td>
+          <td>Name, email address, messages</td>
+          <td>To respond to inquiries and trade requests</td>
+        </tr>
+        <tr>
+          <td><strong>Order Information</strong></td>
+          <td>Shipping address</td>
+          <td>To fulfill your redemptions</td>
+        </tr>
+        <tr>
+          <td><strong>Trade Details</strong></td>
+          <td>Card quantities, types, values</td>
+          <td>To process your bulk card trades</td>
+        </tr>
+        <tr>
+          <td><strong>Browsing Data</strong></td>
+          <td>Pages visited (anonymous)</td>
+          <td>To improve website experience</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="info-box">
+      <strong>💡 What This Means for You:</strong>
+      <p>We only ask for information that's essential to provide our service. No unnecessary data collection, ever!</p>
+    </div>
+  </div>
+
+  <div class="policy-content">
+    <h2><span class="icon">🎯</span>2. How We Use Your Information</h2>
+    <p>Your data helps us provide great service. Here's exactly what we do with it:</p>
+    <ul>
+      <li>📧 <strong>Respond to your inquiries</strong> - Answer questions and process trade requests</li>
+      <li>📦 <strong>Fulfill orders</strong> - Process payments</li>
+      <li>✅ <strong>Verify trades</strong> - Check card quantities and conditions</li>
+      <li>🔄 <strong>Improve our service</strong> - Make the website and experience better</li>
+      <li>📬 <strong>Send updates</strong> - Only if you've opted in (you can opt out anytime!)</li>
+    </ul>
+    
+    <div class="security-box">
+      <strong>🛡️ Your Trust Is Our Priority:</strong>
+      <p>We use your information ONLY for these purposes. No marketing spam, no selling your data, no funny business!</p>
+    </div>
+  </div>
+
+  <div class="policy-content">
+    <h2><span class="icon">🔒</span>3. How Your Data Is Stored and Shared</h2>
+    
+    <h3 style="color: var(--blue); margin-top: 20px;">🔐 Storage & Security</h3>
+    <p>Your information is stored securely via our website host with industry-standard encryption. Only authorized Whimsical Cards staff can access your data.</p>
+    
+    <h3 style="color: var(--blue); margin-top: 25px;">🤝 When We Share Your Data</h3>
+    <p><strong style="color: var(--green);">We do NOT sell your data to any third parties. Period.</strong></p>
+    <p>We only share your information with trusted partners when absolutely necessary:</p>
+    <ul>
+      <li>💳 <strong>Payment Processors</strong> (PayPal, banks) - To process payments securely</li>
+      <li>📦 <strong>Delivery Services</strong> (Royal Mail, couriers) - To ship your orders</li>
+      <li>🔒 <strong>Website Host</strong> - To securely store data</li>
+    </ul>
+    
+    <div class="info-box">
+      <strong>🎯 Important:</strong>
+      <p>These partners are contractually obligated to protect your data and use it only for fulfilling our services to you.</p>
+    </div>
+  </div>
+
+  <div class="policy-content">
+    <h2><span class="icon">🍪</span>4. Cookies & Tracking</h2>
+    <p>Cookies are small files that help websites remember your preferences.</p>
+    
+    <h3 style="color: var(--blue); margin-top: 20px;">What We Use:</h3>
+    <ul>
+      <li>🔧 <strong>Essential Cookies</strong> - Make the website work properly (required)</li>
+      <li>📊 <strong>Analytics (Future)</strong> - May be used to understand site usage (anonymous)</li>
+    </ul>
+    
+    <p>You can control cookies through your browser settings. Blocking essential cookies may affect website functionality.</p>
+  </div>
+
+  <div class="policy-content">
+    <h2><span class="icon">✨</span>5. Your Rights & Control</h2>
+    <p style="font-size: 1.1rem;">You're in charge of your data! Here's what you can do:</p>
+    
+    <div class="security-box">
+      <strong>🎯 Your Privacy Rights:</strong>
+      <ul style="margin-top: 10px;">
+        <li>📄 <strong>Access</strong> - Request to see all data we hold about you</li>
+        <li>✏️ <strong>Correction</strong> - Ask us to update incorrect information</li>
+        <li>🗑️ <strong>Deletion</strong> - Request removal of your data (where legally possible)</li>
+        <li>📤 <strong>Export</strong> - Get a copy of your data in portable format</li>
+        <li>🚫 <strong>Opt-Out</strong> - Unsubscribe from marketing emails anytime</li>
+      </ul>
+    </div>
+    
+    <p style="margin-top: 20px;">To exercise any of these rights, just email us - we're here to help! 💬</p>
+  </div>
+
+  <div class="policy-content">
+    <h2><span class="icon">🔄</span>6. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements.</p>
+    <ul>
+      <li>📅 <strong>We'll update</strong> the "Last Updated" date at the top</li>
+      <li>📧 <strong>Major changes?</strong> We'll notify you by email</li>
+      <li>✅ <strong>Your continued use</strong> means you accept the updates</li>
+    </ul>
+    <p>We recommend checking this page periodically to stay informed!</p>
+  </div>
+
+  <div class="contact-cta">
+    <h3>💬 Questions About Your Privacy?</h3>
+    <p style="font-size: 1.1rem; margin: 15px 0;">
+      We're here to help! Whether you want to access your data, make changes, or just ask questions - we're only an email away.
+    </p>
+    <a href="mailto:info.whimsicalcards@gmail.com">📧 Email Us Now</a>
+    <p style="margin-top: 20px; color: var(--green); font-weight: bold;">
+      ⚡ We typically respond within 24 hours!
+    </p>
+  </div>
+
+  <div class="policy-content">
+    <p style="text-align: center; font-size: 1.1rem; line-height: 1.8;">
+      <strong>Thank you for trusting Whimsical Cards with your data! 🙏</strong><br>
+      We're committed to keeping your information safe and respecting your privacy every step of the way.
+    </p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Whimsical Cards. All rights reserved.</p>
+    <p><a href="contact.html">Contact Us</a> | <a href="terms.html">Terms & Conditions</a></p>
+  </footer>
+
+</body>
+</html>

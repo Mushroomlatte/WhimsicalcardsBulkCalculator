@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Whimsical Cards - Bulk Calculator</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+  <style>
+    :root {
+      --red: #e53935; --blue: #3b4cca; --yellow: #ffde00; --green: #4CAF50;
+      --bg-color: #f0f4f8; --card-bg: #ffffff; --text-color: #333333; --light-gray: #e9ecef;
+      --purple: #9c27b0; --orange: #ff6f00;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;
+      line-height: 1.6; background-color: var(--bg-color); color: var(--text-color);
+      background-image: url('https://www.transparenttextures.com/patterns/pokemon.png');
+    }
+    
+    .calculator-container, .info-section, .shipping-info {
+      background: var(--card-bg); padding: 25px; border-radius: 15px; margin-bottom: 25px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1); border: 1px solid var(--light-gray);
+      position: relative; overflow: hidden;
+    }
+    
+    /* Urgency Banner */
+    .urgency-banner {
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      color: white; padding: 15px; text-align: center; font-weight: bold;
+      margin: -25px -25px 25px -25px; animation: pulse 2s infinite;
+      border-radius: 15px 15px 0 0;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.9; }
+    }
+    
+    /* Progress Indicator */
+    .progress-container {
+      margin: 20px 0; padding: 15px; background: #f8f9fa;
+      border-radius: 10px; border-left: 4px solid var(--green);
+    }
+    
+    .progress-bar {
+      height: 20px; background: #e0e0e0; border-radius: 10px;
+      overflow: hidden; margin-top: 10px;
+    }
+    
+    .progress-fill {
+      height: 100%; background: linear-gradient(90deg, var(--green), var(--blue));
+      width: 0%; transition: width 0.5s ease; display: flex;
+      align-items: center; justify-content: center; color: white;
+      font-weight: bold; font-size: 0.9rem;
+    }
+    
+    /* Card Input Styling with Visual Feedback */
+    .input-group {
+      background: #f8f9fa; padding: 15px; border-radius: 10px;
+      margin-bottom: 15px; border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .input-group:hover {
+      background: #fff; border-color: var(--blue);
+      transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .input-group.has-value {
+      border-color: var(--green); background: #e8f5e9;
+    }
+    
+    .input-label {
+      display: block; font-weight: bold; color: var(--blue);
+      margin-bottom: 8px; font-size: 1.1rem;
+    }
+    
+    .input-wrapper {
+      display: flex; align-items: center; gap: 10px;
+    }
+    
+    .value-badge {
+      background: var(--yellow); padding: 5px 12px; border-radius: 20px;
+      font-weight: bold; color: var(--text-color); font-size: 0.9rem;
+      white-space: nowrap; min-width: 60px; text-align: center;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Arial Black', sans-serif; color: var(--blue); text-align: center;
+    }
+    
+    h1 {
+      font-size: 2.5rem; font-weight: 900; margin: 20px 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    h2 {
+      font-size: 2rem; border-bottom: 3px solid var(--yellow);
+      padding-bottom: 10px; margin-top: 30px;
+    }
+    
+    h3 {
+      font-size: 1.5rem; color: var(--red); margin-top: 0;
+    }
+    
+    nav {
+      text-align: center; margin: 25px 0; padding: 15px; background: var(--blue);
+      border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    nav a {
+      margin: 0 15px; color: white !important; text-decoration: none;
+      font-weight: bold; font-size: 1.1rem; transition: all 0.3s;
+    }
+    
+    nav a:hover {
+      color: var(--yellow) !important; transform: translateY(-2px);
+    }
+    
+    button, .submit-btn {
+      background: var(--red); color: white; border: none; padding: 15px 30px;
+      cursor: pointer; border-radius: 10px; margin-top: 15px; font-weight: bold;
+      font-size: 1.1rem; transition: all 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      width: 100%; position: relative; overflow: hidden;
+    }
+    
+    button:hover {
+      background: #c62828; transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+    
+    button:active {
+      transform: scale(0.98);
+    }
+    
+    .calculate-btn {
+      background: linear-gradient(135deg, var(--green), #2e7d32);
+      font-size: 1.3rem; padding: 20px;
+      animation: buttonGlow 2s infinite;
+    }
+    
+    @keyframes buttonGlow {
+      0%, 100% { box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4); }
+      50% { box-shadow: 0 4px 20px rgba(76, 175, 80, 0.8); }
+    }
+    
+    input[type="number"], input[type="text"], input[type="email"] {
+      padding: 12px; width: 100%; font-size: 1.1rem;
+      border: 2px solid var(--light-gray); border-radius: 8px;
+      transition: all 0.3s; font-weight: bold;
+    }
+    
+    input[type="number"]:focus, input[type="text"]:focus, input[type="email"]:focus {
+      outline: none; border-color: var(--blue);
+      box-shadow: 0 0 10px rgba(59, 76, 202, 0.3);
+    }
+    
+    #result {
+      font-weight: bold; font-size: 2rem; margin: 20px 0; padding: 25px;
+      background: linear-gradient(135deg, var(--yellow), #ffd700);
+      border-radius: 15px; text-align: center;
+      border: 3px solid var(--blue); box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      animation: resultPop 0.5s ease;
+    }
+    
+    @keyframes resultPop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .celebration {
+      font-size: 3rem; margin-bottom: 10px;
+    }
+    
+    .logo-container {
+      text-align: center; margin: 20px 0;
+    }
+    
+    .business-logo {
+      max-width: 220px; height: auto; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+    }
+    
+    #redemptionBtns {
+      display: none; margin-top: 20px; text-align: center;
+      animation: slideUp 0.5s ease;
+    }
+    
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    #redemptionBtns button {
+      margin: 10px 5px; width: calc(100% - 10px);
+    }
+    
+    .social-proof {
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      padding: 20px; border-radius: 10px; margin: 20px 0;
+      border-left: 5px solid var(--blue); text-align: center;
+    }
+    
+    .social-proof h4 {
+      margin: 0 0 10px 0; color: var(--blue); font-size: 1.2rem;
+    }
+    
+    .testimonial {
+      font-style: italic; margin: 10px 0; color: #555;
+    }
+    
+    .star-rating {
+      color: var(--yellow); font-size: 1.5rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    
+    .address {
+      margin: 10px 0; line-height: 1.6; background: #f0f8ff; padding: 10px;
+      border-radius: 8px; border-left: 4px solid var(--blue);
+    }
+    
+    .quick-tip {
+      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      padding: 15px; border-radius: 10px; margin: 15px 0;
+      border-left: 5px solid var(--orange); animation: tipBounce 1s ease;
+    }
+    
+    @keyframes tipBounce {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(5px); }
+    }
+    
+    .quick-tip strong {
+      color: var(--orange); display: block; margin-bottom: 5px;
+    }
+    
+    .share-section {
+      background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+      padding: 20px; border-radius: 15px; text-align: center;
+      margin: 20px 0; border: 3px dashed var(--purple);
+    }
+    
+    .share-section h3 {
+      color: var(--purple); margin-top: 0;
+    }
+    
+    .share-btn {
+      background: var(--purple); display: inline-block;
+      margin: 5px; padding: 10px 20px;
+    }
+    
+    .share-btn:hover {
+      background: #7b1fa2;
+    }
+    
+    /* Gamification Elements */
+    .achievement-badge {
+      display: inline-block; background: linear-gradient(135deg, #ffd700, #ffed4e);
+      padding: 10px 20px; border-radius: 25px; margin: 10px;
+      font-weight: bold; box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      border: 2px solid #ffa000;
+    }
+    
+    .confetti {
+      position: fixed; width: 10px; height: 10px;
+      background: var(--yellow); top: -10px;
+      animation: confettiFall 3s linear;
+      pointer-events: none; z-index: 9999;
+    }
+    
+    @keyframes confettiFall {
+      to { top: 100vh; transform: rotate(360deg); }
+    }
+    
+    @media (max-width: 600px) {
+      body { padding: 10px; }
+      h1 { font-size: 1.8rem; }
+      nav a { display: block; margin: 10px 0; }
+      input[type="number"] { font-size: 1rem; }
+      .urgency-banner { font-size: 0.9rem; padding: 12px; }
+      #redemptionBtns button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="logo.png" alt="Whimsical Cards Logo" class="business-logo">
+  </div>
+
+  <nav>
+    <a href="index.html">Trade Calculator</a> |
+    <a href="contact.html">Contact</a> |
+    <a href="terms.html">T&Cs</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </nav>
+
+  <h1>🎯 Pokémon Bulk Trade Calculator</h1>
+  
+  <div class="calculator-container">
+    <div class="urgency-banner">
+      ⚡ Calculate your cards value in 30 seconds! ⚡
+    </div>
+    
+    <div class="social-proof">
+      <h4>💎 Trusted by 500+ Traders!</h4>
+      <div class="star-rating">⭐⭐⭐⭐⭐</div>
+      <div class="testimonial">"Easiest trade I've ever done!" - Sarah M.</div>
+    </div>
+    
+    <h3>✨ Enter Your Cards</h3>
+    
+    <div class="progress-container">
+      <strong>📊 Your Progress:</strong>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressBar">0%</div>
+      </div>
+      <div id="progressText" style="margin-top: 10px; text-align: center; font-weight: bold;">
+        Start entering your cards!
+      </div>
+    </div>
+    
+    <div id="categoryInputs"></div>
+    
+    <div class="quick-tip">
+      <strong>💡 Pro Tip:</strong>
+      The more cards you trade, the better value you get! Don't forget those extras hiding in your collection! 🎯
+    </div>
+    
+    <button type="button" class="calculate-btn" onclick="calculateValue()">
+      🚀 Calculate My Value Now!
+    </button>
+    
+    <div id="result"></div>
+    
+    <div id="redemptionBtns"></div>
+    
+    <form id="tradeForm" action="https://formsubmit.co/Info.whimsicalcards@gmail.com" method="POST" style="display:none;">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_subject" value="New Trade Request">
+      
+      <div id="hiddenCategoryFields"></div>
+      <input type="hidden" name="Total Value" id="submitTotal">
+      
+      <label class="input-label">Your Name:</label>
+      <input type="text" name="Name" placeholder="Full Name" required><br>
+      
+      <label class="input-label">Your Email:</label>
+      <input type="email" name="Email" placeholder="email@example.com" required><br>
+      
+      <button type="submit" onclick="storeTradeCredit()">✅ Submit My Trade!</button>
+    </form>
+  </div>
+  
+  <div class="share-section">
+    <h3>🎉 Love this calculator? Share it!</h3>
+    <p><strong>Help your friends discover their card value too!</strong></p>
+    <button class="share-btn" onclick="shareCalculator()">📱 Share with Friends</button>
+    <div style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+      <em>Every friend you refer makes the community stronger! 💪</em>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <h2>💼 About Us</h2>
+    <p><strong>We trade bulk Pokémon cards for cash!</strong> Here's how simple it is:</p>
+    <ol>
+      <li>✅ Use the calculator above (takes 30 seconds!)</li>
+      <li>📧 Submit your trade request</li>
+      <li>📦 Ship your cards to us (address provided after confirmation)</li>
+      <li>💰 Get paid via PayPal or bank transfer!</li>
+    </ol>
+    
+    <div class="quick-tip">
+      <strong>⏱️ Fast Processing:</strong>
+      We process most trades within 2-5 working days!
+    </div>
+  </div>
+
+  <div class="shipping-info">
+    <h2>📦 Shipping Made Easy</h2>
+    
+    <div class="social-proof">
+      <div class="testimonial">"The Royal Mail Click & Drop tip saved me so much time!" - James T.</div>
+    </div>
+    
+    <p><strong>1. 📬 Posting Your Cards</strong></p>
+    <ul>
+      <li>✅ Wait for our confirmation first</li>
+      <li>💷 Each party covers their own shipping</li>
+      <li>📍 UK-based with Royal Mail daily pickups</li>
+    </ul>
+
+    <p><strong>2. 🚀 Recommended Method</strong></p>
+    <ul>
+      <li>Use <strong>Royal Mail Click & Drop</strong>:
+        <ul>
+          <li>🖨️ No printer needed - they bring the label!</li>
+          <li>📱 Track everything online</li>
+        </ul>
+      </li>
+      <li><a href="https://send.royalmail.com" target="_blank" style="color: var(--blue); font-weight: bold;">👉 Order collection here</a></li>
+    </ul>
+
+    <p><strong>3. ⚡ Quick Processing</strong></p>
+    <ul>
+      <li>⏱️ 2-5 working days after arrival</li>
+      <li>✅ Full verification of contents</li>
+      <li>💎 Fair and transparent</li>
+    </ul>
+
+    <p><strong>4. 📦 Pack Like a Pro</strong></p>
+    <ul>
+      <li>Best method:
+        <ol>
+          <li>Wrap 100-200 cards with cling film</li>
+          <li>Use sturdy box with padding</li>
+          <li>Prevent movement during transit</li>
+        </ol>
+      </li>
+    </ul>
+  </div>
+
+  <div class="info-section">
+    <h2>❓ Quick Answers</h2>
+    <p><strong>Q: What cards do you accept?</strong></p>
+    <ul>
+      <li>✅ Near-mint condition</li>
+      <li>🇬🇧 English language only</li>
+      <li>🔍 Genuine cards (no counterfeits)</li>
+      <li>❌ No "World Championship" cards</li>
+      <li>🎴 All Pokémon TCG sets welcome!</li>
+    </ul>
+
+    <p><strong>Q: How should I pack my cards?</strong></p>
+    <ol>
+      <li>Wrap in batches with cling film</li>
+      <li>Use padded, sturdy box</li>
+      <li>Ensure cards don't move</li>
+    </ol>
+  </div>
+
+  <script>
+    /* ==========================================================================
+       CATEGORIES — this is the only list you need to edit to change rates,
+       add a new category, or remove one. Each line is:
+         key   : short internal code, no spaces (used behind the scenes only)
+         label : what the customer sees, emoji included if you like
+         rate  : value in £ PER CARD/ITEM — work it out from your pricing:
+                   "50p per card"       → 0.50
+                   "£1 each"            → 1.00
+                   "£12 per 1000 cards" → 0.012   (12 ÷ 1000)
+                   "10 for 1p"          → 0.001   (1 ÷ 10)
+       To add a category: copy a line, change key/label/rate, paste it in.
+       To remove one: delete its line. Order here = order shown on the page.
+       Everything else — inputs, badges, totals, the emailed form — rebuilds
+       itself from this list automatically.
+       ========================================================================== */
+    const CATEGORIES = [
+      { key:"energy",         label:"⚡ Energy",                          rate:0.001 },   // 10 for 1p
+      { key:"trainer",        label:"👤 Trainers",                        rate:0.001 },   // 10 for 1p
+      { key:"nonHolo",        label:"🃏 Non-Holo (Common & Uncommon)",    rate:0.012 },   // £12 per 1000
+      { key:"reverseHolo",    label:"✨ Reverse Holos / Holos",           rate:0.04  },   // £40 per 1000
+      { key:"annivHolo",      label:"🎊 30th Anniversary Holos",          rate:0.01  },   // £10 per 1000
+      { key:"annivPikachu",   label:"⚡ 30th Anniversary Pikachus",       rate:1.00  },   // £1 each
+      { key:"exgxv",          label:"🔥 EX / GX / V",                     rate:0.50  },   // 50p per card
+      { key:"vstar",          label:"💫 VSTAR",                           rate:1.00  },   // £1 per card
+      { key:"fullArt",        label:"🖼️ Full Art",                       rate:1.00  },   // £1 per card
+      { key:"illustration",   label:"🎨 Illustration Rare",               rate:1.50  },   // £1.50 per card
+      { key:"acespec",        label:"🎱 Ace Spec & Poké Ball",            rate:0.50  },   // 50p per card
+      { key:"masterball",     label:"🎯 Masterball Pattern",              rate:1.20  },   // ⚠️ PLACEHOLDER — set your real rate
+      { key:"coins",          label:"🪙 Coins",                           rate:0.10  },   // 10p each
+      { key:"playmats",       label:"🧩 Playmats",                        rate:3.00  },   // £3 each
+      { key:"annivEnergyPack",label:"🔋 30th Anniversary Energy Packs",   rate:1.00  },   // £1 each
+      { key:"sleeves",        label:"🛡️ Sleeves (sealed pack)",          rate:1.00  },   // £1 per sealed pack
+      { key:"pinBadges",      label:"📌 Pin Badges",                      rate:1.00  },   // £1 each
+      { key:"figures",        label:"🧸 Figures",                         rate:3.00  }    // £3 each
+    ];
+    /* ============================== END CATEGORIES ============================== */
+
+    let calculatedTotal = 0;
+
+    // Build the input rows from CATEGORIES
+    const inputsHost = document.getElementById("categoryInputs");
+    CATEGORIES.forEach(c => {
+      const row = document.createElement("div");
+      row.className = "input-group";
+      row.id = `group-${c.key}`;
+      row.innerHTML = `
+        <label class="input-label">${c.label}</label>
+        <div class="input-wrapper">
+          <input type="number" id="${c.key}" placeholder="0" min="0" oninput="updateProgress()">
+          <span class="value-badge" id="badge-${c.key}">£0.00</span>
+        </div>
+      `;
+      inputsHost.appendChild(row);
+    });
+
+    // Build the matching hidden fields for the email submission
+    const hiddenHost = document.getElementById("hiddenCategoryFields");
+    CATEGORIES.forEach(c => {
+      const h = document.createElement("input");
+      h.type = "hidden";
+      h.name = c.label.replace(/^[^\w]+\s*/, ""); // strip leading emoji for a clean email field name
+      h.id = `submit-${c.key}`;
+      hiddenHost.appendChild(h);
+    });
+
+    function updateProgress() {
+      let filledFields = 0;
+      let totalValue = 0;
+
+      CATEGORIES.forEach(c => {
+        const value = parseInt(document.getElementById(c.key).value) || 0;
+        const group = document.getElementById(`group-${c.key}`);
+        const badge = document.getElementById(`badge-${c.key}`);
+
+        if (value > 0) {
+          filledFields++;
+          group.classList.add('has-value');
+          const fieldValue = value * c.rate;
+          totalValue += fieldValue;
+          badge.textContent = `£${fieldValue.toFixed(2)}`;
+        } else {
+          group.classList.remove('has-value');
+          badge.textContent = '£0.00';
+        }
+      });
+
+      const progress = (filledFields / CATEGORIES.length) * 100;
+      const progressBar = document.getElementById('progressBar');
+      const progressText = document.getElementById('progressText');
+
+      progressBar.style.width = progress + '%';
+      progressBar.textContent = Math.round(progress) + '%';
+
+      if (progress === 0) {
+        progressText.textContent = 'Start entering your cards!';
+      } else if (progress < 50) {
+        progressText.textContent = '🎯 Keep going! You\'re doing great!';
+      } else if (progress < 100) {
+        progressText.textContent = '🔥 Almost there! Fill in the rest!';
+      } else {
+        progressText.textContent = '✅ Perfect! Now calculate your value!';
+      }
+    }
+
+    function createConfetti() {
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + '%';
+          confetti.style.background = ['#e53935', '#3b4cca', '#ffde00', '#4CAF50', '#9c27b0'][Math.floor(Math.random() * 5)];
+          confetti.style.animationDelay = Math.random() * 2 + 's';
+          document.body.appendChild(confetti);
+
+          setTimeout(() => confetti.remove(), 3000);
+        }, i * 30);
+      }
+    }
+
+    function readCounts() {
+      const counts = {};
+      CATEGORIES.forEach(c => {
+        counts[c.key] = parseInt(document.getElementById(c.key).value) || 0;
+      });
+      return counts;
+    }
+
+    function syncHiddenFields(counts) {
+      CATEGORIES.forEach(c => {
+        document.getElementById(`submit-${c.key}`).value =
+          counts[c.key] > 0 ? `${counts[c.key]} × £${c.rate.toFixed(4)} = £${(counts[c.key] * c.rate).toFixed(2)}` : '';
+      });
+      document.getElementById("submitTotal").value = `£${calculatedTotal.toFixed(2)}`;
+    }
+
+    function calculateValue() {
+      const counts = readCounts();
+
+      calculatedTotal = CATEGORIES.reduce((sum, c) => sum + (counts[c.key] * c.rate), 0);
+
+      createConfetti();
+
+      let achievement = '';
+      if (calculatedTotal >= 100) {
+        achievement = '<div class="achievement-badge">LEGENDARY TRADER!</div>';
+      } else if (calculatedTotal >= 50) {
+        achievement = '<div class="achievement-badge">MASTER TRADER!</div>';
+      } else if (calculatedTotal >= 20) {
+        achievement = '<div class="achievement-badge">PRO TRADER!</div>';
+      } else if (calculatedTotal > 0) {
+        achievement = '<div class="achievement-badge">GREAT START!</div>';
+      }
+
+      document.getElementById("result").innerHTML = `
+        <div class="celebration">🎉</div>
+        <strong>Your Cards Are Worth:</strong><br>
+        <div style="font-size: 2.5rem; margin: 10px 0; color: var(--blue);">£${calculatedTotal.toFixed(2)}</div>
+        ${achievement}
+        <div style="font-size: 0.9rem; margin-top: 10px; color: #666;">
+          💰 That's real money in your pocket!
+        </div>
+      `;
+
+      document.getElementById("redemptionBtns").innerHTML = `
+        <button type="button" onclick="submitTrade()">✅ Submit My Trade Now!</button>
+      `;
+      document.getElementById("redemptionBtns").style.display = "block";
+
+      syncHiddenFields(counts);
+
+      document.getElementById("result").scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function submitTrade() {
+      const counts = readCounts();
+      window.bulkData = counts;
+      window.tradeCredit = calculatedTotal;
+
+      syncHiddenFields(counts);
+
+      document.getElementById("tradeForm").style.display = "block";
+      document.getElementById("tradeForm").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function storeTradeCredit() {
+      window.tradeCredit = calculatedTotal;
+    }
+    
+    function shareCalculator() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Whimsical Cards - Bulk Calculator',
+          text: 'Check out this awesome Pokémon card trade calculator! 🎴💰',
+          url: window.location.href
+        }).catch(() => {
+          copyToClipboard();
+        });
+      } else {
+        copyToClipboard();
+      }
+    }
+    
+    function copyToClipboard() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        alert('🎉 Link copied! Share it with your friends!');
+      }).catch(() => {
+        prompt('Copy this link to share:', url);
+      });
+    }
+    
+    // Initialize progress on page load
+    updateProgress();
+  </script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Terms & Conditions - Whimsical Cards</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --red: #e53935; --blue: #3b4cca; --yellow: #ffde00; --green: #4CAF50;
+      --bg-color: #f0f4f8; --card-bg: #ffffff; --text-color: #333333; 
+      --light-gray: #e9ecef; --purple: #9c27b0; --orange: #ff6f00;
+    }
+    
+    * { box-sizing: border-box; }
+    
+    body {
+      font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; 
+      padding: 20px; line-height: 1.7; background-color: var(--bg-color); 
+      color: var(--text-color);
+      background-image: url('https://www.transparenttextures.com/patterns/pokemon.png');
+    }
+    
+    .logo-container { text-align: center; margin: 20px 0; }
+    
+    .business-logo {
+      max-width: 220px; height: auto; 
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+    }
+    
+    nav {
+      text-align: center; margin: 25px 0; padding: 15px; 
+      background: var(--blue); border-radius: 10px; 
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    nav a {
+      margin: 0 15px; color: white !important; text-decoration: none;
+      font-weight: bold; font-size: 1.1rem; transition: all 0.3s;
+    }
+    
+    nav a:hover { 
+      color: var(--yellow) !important; transform: translateY(-2px); 
+    }
+    
+    h1 {
+      text-align: center; font-size: 2.5rem; font-weight: 900; 
+      margin: 20px 0; color: var(--blue); 
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    h2 {
+      font-size: 1.8rem; color: var(--blue); 
+      border-bottom: 3px solid var(--yellow);
+      padding-bottom: 10px; margin-top: 40px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    
+    h3 { 
+      font-size: 1.3rem; color: var(--blue); margin-top: 25px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: white; padding: 30px; text-align: center;
+      border-radius: 15px; margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .hero-section h2 {
+      color: white; margin: 0 0 10px 0; border: none;
+    }
+    
+    .hero-section p {
+      font-size: 1.1rem; margin: 10px 0;
+    }
+    
+    .last-updated {
+      text-align: center; font-style: italic; color: #666; 
+      margin: 10px 0 30px 0; font-size: 1.1rem;
+      background: #fff3e0; padding: 10px; border-radius: 8px;
+    }
+    
+    .content-section {
+      background: var(--card-bg); padding: 30px; border-radius: 15px; 
+      margin-bottom: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+      border-left: 5px solid var(--blue); transition: all 0.3s;
+    }
+    
+    .content-section:hover {
+      transform: translateX(5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    
+    .key-points {
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      padding: 25px; border-radius: 15px; margin: 30px 0;
+      border-left: 5px solid var(--green);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .key-points h3 {
+      margin-top: 0; color: var(--green); font-size: 1.5rem;
+    }
+    
+    .key-points ul {
+      margin: 15px 0;
+    }
+    
+    .key-points li {
+      margin: 10px 0; font-size: 1.05rem;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    
+    .key-points li::before {
+      content: '✅'; flex-shrink: 0;
+    }
+    
+    .policy-section { 
+      margin: 30px 0;
+    }
+    
+    ol, ul { 
+      padding-left: 25px; 
+    }
+    
+    li { 
+      margin-bottom: 12px; line-height: 1.6;
+    }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, #ffebee, #ffcdd2);
+      border-left: 5px solid var(--red);
+      padding: 20px; margin: 25px 0; border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    
+    .highlight-box p {
+      margin: 0; font-size: 1.05rem;
+    }
+    
+    .highlight-box strong {
+      color: var(--red); font-size: 1.2rem;
+      display: block; margin-bottom: 8px;
+    }
+    
+    .info-box {
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      border-left: 5px solid var(--blue);
+      padding: 20px; margin: 25px 0; border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    
+    .info-box strong {
+      color: var(--blue); font-size: 1.1rem;
+      display: block; margin-bottom: 8px;
+    }
+    
+    .icon {
+      display: inline-block; margin-right: 8px;
+      font-size: 1.2em;
+    }
+    
+    .quick-nav {
+      background: var(--card-bg); padding: 20px;
+      border-radius: 15px; margin: 25px 0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      border: 2px solid var(--light-gray);
+    }
+    
+    .quick-nav h3 {
+      margin-top: 0; color: var(--blue);
+    }
+    
+    .quick-nav a {
+      display: block; padding: 10px 15px;
+      margin: 8px 0; background: #f8f9fa;
+      border-radius: 8px; text-decoration: none;
+      color: var(--blue); font-weight: bold;
+      transition: all 0.3s;
+      border-left: 4px solid transparent;
+    }
+    
+    .quick-nav a:hover {
+      background: var(--blue); color: white;
+      transform: translateX(5px);
+      border-left-color: var(--yellow);
+    }
+    
+    footer {
+      text-align: center; margin-top: 40px; padding-top: 20px;
+      border-top: 2px solid var(--light-gray); color: #777;
+    }
+    
+    footer a {
+      color: var(--blue); text-decoration: none; font-weight: bold;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 600px) {
+      body { padding: 10px; }
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.5rem; }
+      nav a { display: block; margin: 10px 0; }
+      .content-section { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="logo.png" alt="Whimsical Cards Logo" class="business-logo">
+  </div>
+  
+  <nav>
+    <a href="index.html">Trade Calculator</a> |
+    <a href="contact.html">Contact</a> |
+    <a href="terms.html">T&Cs</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </nav>
+  
+  <h1>📋 Terms & Conditions</h1>
+  
+  <div class="last-updated">
+    📅 Last Updated: 6th November, 2025
+  </div>
+  
+  <div class="hero-section">
+    <h2>Welcome to Whimsical Cards! 🎴</h2>
+    <p>These terms keep everyone safe and happy. Take a moment to read through - we've made it easy!</p>
+  </div>
+  
+  <div class="key-points">
+    <h3><span class="icon">⚡</span>Quick Summary - The Most Important Bits!</h3>
+    <ul style="list-style: none; padding-left: 0;">
+      <li>Cards must be near-mint, English, and genuine</li>
+      <li>We inspect cards when they arrive - final value may change</li>
+      <li>Trade values must be used immediately (same transaction)</li>
+      <li>You pay shipping to us, we pay shipping to you</li>
+      <li>All trades are final - no returns on traded cards</li>
+      <li>We respond within 24 hours to questions</li>
+    </ul>
+  </div>
+  
+  <div class="quick-nav">
+    <h3><span class="icon">🔍</span>Jump to Section:</h3>
+    <a href="#section1">1. Card Trading Service</a>
+    <a href="#section2">2. Shipping & Processing</a>
+    <a href="#section3">3. Trade Value & Redemption</a>
+    <a href="#section4">4. Return Policy</a>
+    <a href="#section5">5. Privacy & Data</a>
+    <a href="#section6">6. Changes to Terms</a>
+    <a href="#section7">7. Contact Us</a>
+  </div>
+  
+  <div class="content-section">
+    <p style="font-size: 1.1rem; line-height: 1.8;">
+      Welcome to Whimsical Cards! By using our website and trading services, you agree to these Terms and Conditions. We've tried to make them as clear and friendly as possible - but please read carefully! 📖
+    </p>
+  </div>
+  
+  <div class="content-section" id="section1">
+    <div class="policy-section">
+      <h2><span class="icon">💳</span>1. Card Trading Service</h2>
+      <p>Whimsical Cards offers a bulk trading service where you exchange Pokémon cards for cash value, <strong>redeemed as cash payment</strong> (processed via PayPal or bank transfer).</p>
+      
+      <h3><span class="icon">✅</span>1.1 What Cards We Accept</h3>
+      <div class="info-box">
+        <strong>Your cards must meet these requirements:</strong>
+        <ul style="margin-top: 10px;">
+          <li>✅ <strong>Near-mint condition</strong> - no major creases, bends, scratches, or water damage</li>
+          <li>🇬🇧 <strong>English language only</strong></li>
+          <li>🔍 <strong>Genuine cards</strong> - no counterfeits</li>
+          <li>❌ <strong>No "World Championship Deck" cards</strong></li>
+        </ul>
+      </div>
+      
+      <h3><span class="icon">💰</span>1.2 How We Value Your Cards</h3>
+      <p>Your redemption value is determined by:</p>
+      <ul>
+        <li><strong>Card type</strong> (Non-Holo, Reverse/Holo, Trainer, Energy, GX/EX/V, VMAX/Fullart, Ace Specs, Masterballs)</li>
+        <li><strong>Current market rates</strong> shown in our calculator</li>
+        <li><strong>Physical inspection</strong> when we receive them</li>
+      </ul>
+      
+      <div class="highlight-box">
+        <strong>⚠️ Important Notice:</strong>
+        <p>The online calculator gives you an <strong>estimate</strong>. We inspect every card when it arrives, and the final value may be adjusted based on actual condition and quantity. We'll always contact you before finalizing if there are any changes!</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="content-section" id="section2">
+    <div class="policy-section">
+      <h2><span class="icon">📦</span>2. Shipping & Processing</h2>
+      
+      <h3><span class="icon">🚚</span>2.1 Who Pays for Shipping?</h3>
+      <p>Each party covers their own shipping costs:</p>
+      <ul>
+        <li><strong>You</strong> pay to send cards to us</li>
+        <li><strong>We</strong> pay to send payment to you</li>
+      </ul>
+      <p>Make sure to package your cards securely - we recommend Royal Mail's Click & Drop service!</p>
+      
+      <h3><span class="icon">⏱️</span>2.2 Processing Time</h3>
+      <div class="info-box">
+        <strong>⚡ We aim to process trades within 2-5 working days after receipt</strong>
+        <p style="margin-top: 10px;">This includes:</p>
+        <ul>
+          <li>✅ Verifying card condition</li>
+          <li>🔢 Counting cards</li>
+          <li>💰 Calculating credit</li>
+          <li>📤 Processing payment</li>
+        </ul>
+      </div>
+      
+      <h3><span class="icon">📮</span>2.3 Lost or Damaged Shipments</h3>
+      <p>Whimsical Cards is <strong>not responsible</strong> for cards lost, stolen, or damaged during transit to us. We strongly recommend using tracked shipping for your protection! 🛡️</p>
+    </div>
+  </div>
+  
+  <div class="content-section" id="section3">
+    <div class="policy-section">
+      <h2><span class="icon">💎</span>3. Trade Value & Redemption</h2>
+      
+      <h3><span class="icon">⚡</span>3.1 Immediate Redemption</h3>
+      <div class="highlight-box">
+        <strong>⏰ Use It or Lose It:</strong>
+        <p>Trade value must be redeemed during the <strong>same transaction</strong>. It cannot be stored for later use - make sure you know what you want!</p>
+      </div>
+      
+      <h3><span class="icon">🎁</span>3.2 Redemption Options</h3>
+      <p>Trade value is redeemed as:</p>
+      <ul>
+        <li>💰 <strong>Cash payment</strong> (PayPal or bank transfer)</li>
+      </ul>
+      
+      <h3><span class="icon">⚖️</span>3.3 Value Adjustments</h3>
+      <p>We may need to adjust trade values if:</p>
+      <ul>
+        <li>❌ Cards don't meet condition requirements</li>
+        <li>🔢 Quantities differ from what you declared</li>
+        <li>🚫 Cards are ineligible (counterfeit, non-English, etc.)</li>
+      </ul>
+      <p><strong>Don't worry!</strong> We'll always contact you before making any adjustments. 📞</p>
+    </div>
+  </div>
+  
+  <div class="content-section" id="section4">
+    <div class="policy-section">
+      <h2><span class="icon">↩️</span>4. Return Policy</h2>
+      
+      <h3><span class="icon">💳</span>4.1 Traded Cards</h3>
+      <div class="highlight-box">
+        <strong>🔒 All Trades Are Final:</strong>
+        <p>Once you've traded your cards to us, they cannot be returned. Make sure you're ready to trade!</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="content-section" id="section5">
+    <div class="policy-section">
+      <h2><span class="icon">🔒</span>5. Privacy & Data Protection</h2>
+      <p>We collect personal information necessary to process trades. Your data is:</p>
+      <ul>
+        <li>🔐 <strong>Stored securely</strong></li>
+        <li>✅ <strong>Used only for order processing</strong></li>
+        <li>🚫 <strong>Never sold to third parties</strong></li>
+        <li>📤 <strong>Shared only when necessary</strong> (e.g., with shipping providers)</li>
+      </ul>
+      <p>For complete details, check our <a href="privacy.html" style="color: var(--blue); font-weight: bold;">Privacy Policy</a>. 📋</p>
+    </div>
+  </div>
+  
+  <div class="content-section" id="section6">
+    <div class="policy-section">
+      <h2><span class="icon">📝</span>6. Changes to These Terms</h2>
+      <p>We may update these terms from time to time. Changes take effect immediately when posted on the website. Your continued use of our services means you accept any updates. 📅</p>
+      <p>We'll always display the "Last Updated" date at the top of the page!</p>
+    </div>
+  </div>
+  
+  <div class="content-section" id="section7">
+    <div class="policy-section">
+      <h2><span class="icon">💬</span>7. Questions? We're Here to Help!</h2>
+      <p style="font-size: 1.1rem;">If you have any questions about these Terms & Conditions, please don't hesitate to reach out:</p>
+      <div class="info-box" style="margin-top: 20px;">
+        <strong>📧 Email us at:</strong>
+        <p style="margin: 10px 0 0 0;">
+          <a href="mailto:Info.whimsicalcards@gmail.com" style="color: var(--blue); font-size: 1.1rem; font-weight: bold; text-decoration: none;">
+            Info.whimsicalcards@gmail.com
+          </a>
+        </p>
+        <p style="margin: 10px 0 0 0; color: var(--green); font-weight: bold;">
+          ⚡ We typically respond within 24 hours!
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <p>&copy; 2025 Whimsical Cards. All rights reserved.</p>
+    <p><a href="contact.html">Contact Us</a> | <a href="privacy.html">Privacy Policy</a></p>
+  </footer>
+</body>
+</html>
