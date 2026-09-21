@@ -337,6 +337,9 @@
     <button type="button" class="calculate-btn" onclick="calculateValue()">
       🚀 Calculate My Value Now!
     </button>
+    <button type="button" onclick="clearAllInputs()" style="background:transparent;border:2px solid #ccc;color:#666;padding:10px 20px;border-radius:8px;font-size:0.9rem;cursor:pointer;display:block;margin:10px auto 0;">
+      🔄 Clear All
+    </button>
     
     <div id="result"></div>
     
@@ -359,7 +362,7 @@
       <label class="input-label">Your Email:</label>
       <input type="email" name="email" placeholder="email@example.com" required><br>
       
-      <button type="submit" onclick="storeTradeCredit()">✅ Submit My Trade!</button>
+      <button type="submit" id="tradeSubmitBtn" onclick="storeTradeCredit(); this.disabled=true; this.innerText='Sending...';">✅ Submit My Trade!</button>
     </form>
   </div>
   
@@ -499,6 +502,17 @@
       return `WC-${stamp}-${rand}`;
     }
 
+    function clearAllInputs() {
+      CATEGORIES.forEach(c => {
+        document.getElementById(c.key).value = '';
+      });
+      updateProgress();
+      document.getElementById("result").innerHTML = '';
+      document.getElementById("redemptionBtns").innerHTML = '';
+      document.getElementById("redemptionBtns").style.display = "none";
+      document.getElementById("tradeForm").style.display = "none";
+    }
+
     // Build the input rows from CATEGORIES
     const inputsHost = document.getElementById("categoryInputs");
     CATEGORIES.forEach(c => {
@@ -508,7 +522,7 @@
       row.innerHTML = `
         <label class="input-label">${c.label}</label>
         <div class="input-wrapper">
-          <input type="number" id="${c.key}" placeholder="0" min="0" oninput="updateProgress()">
+          <input type="number" id="${c.key}" placeholder="0" min="0" inputmode="numeric" pattern="[0-9]*" oninput="updateProgress()">
           <span class="value-badge" id="badge-${c.key}">£0.00</span>
         </div>
       `;
@@ -605,6 +619,21 @@
       const counts = readCounts();
 
       calculatedTotal = CATEGORIES.reduce((sum, c) => sum + (counts[c.key] * c.rate), 0);
+
+      if (calculatedTotal <= 0) {
+        document.getElementById("result").innerHTML = `
+          <div style="font-size: 1.5rem; margin: 10px 0;">🤔</div>
+          <strong>You haven't entered any cards yet!</strong>
+          <div style="font-size: 0.9rem; margin-top: 10px; color: #666;">
+            Add some quantities above to see what your bulk is worth.
+          </div>
+        `;
+        document.getElementById("redemptionBtns").innerHTML = '';
+        document.getElementById("redemptionBtns").style.display = "none";
+        document.getElementById("result").scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
       tradeReference = generateReference();
 
       createConfetti();
@@ -616,7 +645,7 @@
         achievement = '<div class="achievement-badge">MASTER TRADER!</div>';
       } else if (calculatedTotal >= 20) {
         achievement = '<div class="achievement-badge">PRO TRADER!</div>';
-      } else if (calculatedTotal > 0) {
+      } else {
         achievement = '<div class="achievement-badge">GREAT START!</div>';
       }
 
