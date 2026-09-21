@@ -81,8 +81,23 @@
     <h1>Message Sent!</h1>
     <p>Thanks — your message has landed safely in our inbox.</p>
     <div class="response-time">⚡ We reply within 24 hours!</div>
+    <div id="refBox"></div>
     <p>In the meantime, feel free to have another play with the calculator.</p>
     <a href="index.html" class="back-btn">Back to Trade Calculator</a>
   </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
+    if (ref) {
+      document.getElementById("refBox").innerHTML = `
+        <div style="background:#f0f4f8;border:2px dashed var(--blue);border-radius:12px;padding:14px 18px;margin:18px 0;">
+          <div style="font-size:0.9rem;color:#666;">📌 Your trade reference number</div>
+          <div style="font-size:1.4rem;font-weight:900;color:var(--blue);letter-spacing:1px;">${ref}</div>
+          <div style="font-size:0.85rem;color:#666;margin-top:4px;">We've also emailed you a copy — but save this just in case!</div>
+        </div>
+      `;
+    }
+  </script>
 </body>
 </html>
