@@ -149,6 +149,13 @@
       animation: buttonGlow 2s infinite;
     }
     
+    .clear-btn {
+      background: transparent; border: 2px solid #ccc; color: #666;
+      padding: 10px 20px; border-radius: 8px; font-size: 0.9rem;
+      cursor: pointer; display: block; margin: 10px auto 0;
+    }
+    .clear-btn:hover { border-color: #999; color: #333; }
+    
     @keyframes buttonGlow {
       0%, 100% { box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4); }
       50% { box-shadow: 0 4px 20px rgba(76, 175, 80, 0.8); }
@@ -337,7 +344,7 @@
     <button type="button" class="calculate-btn" onclick="calculateValue()">
       🚀 Calculate My Value Now!
     </button>
-    <button type="button" onclick="clearAllInputs()" style="background:transparent;border:2px solid #ccc;color:#666;padding:10px 20px;border-radius:8px;font-size:0.9rem;cursor:pointer;display:block;margin:10px auto 0;">
+    <button type="button" class="clear-btn" onclick="clearAllInputs()">
       🔄 Clear All
     </button>
     
@@ -482,7 +489,7 @@
       { key:"fullArt",        label:"🖼️ Full Art",                       rate:1.00  },   // £1 per card
       { key:"illustration",   label:"🎨 Illustration Rare",               rate:1.50  },   // £1.50 per card
       { key:"acespec",        label:"🎱 Ace Spec & Poké Ball",            rate:0.50  },   // 50p per card
-      { key:"masterball",     label:"🎯 Masterball Pattern",              rate:1.20  },   // ⚠️ PLACEHOLDER — set your real rate
+      { key:"masterball",     label:"🎯 Masterball Pattern",              rate:1.00  },   // £1 each
       { key:"coins",          label:"🪙 Coins",                           rate:0.10  },   // 10p each
       { key:"playmats",       label:"🧩 Playmats",                        rate:3.00  },   // £3 each
       { key:"annivEnergyPack",label:"🔋 30th Anniversary Energy Packs",   rate:1.00  },   // £1 each
