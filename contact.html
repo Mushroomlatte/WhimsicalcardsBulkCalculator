@@ -314,7 +314,7 @@
   
   <div class="hero-banner">
     <h2>We're Here to Help! 🎯</h2>
-    <p>Questions about trading? Need order support? Just want to chat about Pokémon cards?</p>
+    <p>Questions about trading? Need trade support? Just want to chat about Pokémon cards?</p>
     <div class="response-time">⚡ We reply within 24 hours!</div>
   </div>
   
@@ -371,7 +371,7 @@
   <div class="quick-tip">
     <strong>💡 Quick Tips for Faster Responses:</strong>
     <ul style="margin: 10px 0;">
-      <li>📝 Include your order/trade reference number if applicable</li>
+      <li>📝 Include your trade reference number if applicable</li>
       <li>📸 Attach photos for card condition questions</li>
       <li>🎯 Be specific about what you need help with</li>
     </ul>
@@ -383,10 +383,12 @@
       Fill out the form below and we'll get back to you ASAP! 🚀
     </p>
     
-    <form action="https://formsubmit.co/30e08fc190b92e0b3a0524e0471520ee" method="POST">
+    <form action="https://formsubmit.co/30e08fc190b92e0b3a0524e0471520ee" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="_subject" value="🎴 New Website Contact">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_next" value="https://mushroomlatte.github.io/WhimsicalcardsBulkCalculator/thanks.html">
+      <input type="hidden" name="_autoresponse" value="Thanks for getting in touch with Whimsical Cards! This confirms we've received your message — below is a copy of exactly what you sent us. We reply within 24 hours.">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       
       <div class="form-group">
         <label for="name">👤 Your Name:</label>
@@ -409,31 +411,22 @@
       </div>
       
       <div class="form-group">
+        <label for="reference">📌 Trade Reference Number (if you have one):</label>
+        <input type="text" id="reference" name="Trade Reference" placeholder="e.g. WC-250921-4F7A">
+      </div>
+      
+      <div class="form-group">
+        <label for="attachment">📸 Attach a Photo (optional, max 10MB):</label>
+        <input type="file" id="attachment" name="attachment" accept="image/png, image/jpeg, image/heic">
+      </div>
+      
+      <div class="form-group">
         <label for="message">💬 Your Message:</label>
         <textarea id="message" name="message" placeholder="Tell us how we can help you..." required></textarea>
       </div>
       
       <button type="submit" class="submit-btn">📤 Send Message</button>
     </form>
-  </div>
-  
-  <div class="content-section">
-    <h2>🌟 Follow Our Journey</h2>
-    <p style="text-align: center; font-size: 1.1rem;">
-      Stay updated with our latest offers and Pokémon card news!
-    </p>
-    
-    <div class="social-icons">
-      <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-      <a href="#" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-    </div>
-    
-    <div class="quick-tip" style="margin-top: 25px;">
-      <strong>🎉 Join Our Community!</strong>
-      Follow us for exclusive deals and trading tips!
-    </div>
   </div>
   
   <footer>

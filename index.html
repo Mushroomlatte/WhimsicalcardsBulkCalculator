@@ -343,19 +343,21 @@
     <div id="redemptionBtns"></div>
     
     <form id="tradeForm" action="https://formsubmit.co/30e08fc190b92e0b3a0524e0471520ee" method="POST" style="display:none;">
-      <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_subject" value="New Trade Request">
       <input type="hidden" name="_next" value="https://mushroomlatte.github.io/WhimsicalcardsBulkCalculator/thanks.html">
+      <input type="hidden" name="_autoresponse" value="Thanks for your trade submission to Whimsical Cards! This email confirms we've received it — below is a copy of exactly what you sent us. We'll be in touch within 24 hours with our postal address. Keep your reference number handy in case you need to contact us about this trade.">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       
       <div id="hiddenCategoryFields"></div>
+      <input type="hidden" name="Trade Reference" id="submitReference">
       <input type="hidden" name="Total Value" id="submitTotal">
       
       <label class="input-label">Your Name:</label>
       <input type="text" name="Name" placeholder="Full Name" required><br>
       
       <label class="input-label">Your Email:</label>
-      <input type="email" name="Email" placeholder="email@example.com" required><br>
+      <input type="email" name="email" placeholder="email@example.com" required><br>
       
       <button type="submit" onclick="storeTradeCredit()">✅ Submit My Trade!</button>
     </form>
@@ -488,6 +490,14 @@
     /* ============================== END CATEGORIES ============================== */
 
     let calculatedTotal = 0;
+    let tradeReference = '';
+
+    function generateReference() {
+      const date = new Date();
+      const stamp = date.toISOString().slice(2,10).replace(/-/g, ''); // YYMMDD
+      const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
+      return `WC-${stamp}-${rand}`;
+    }
 
     // Build the input rows from CATEGORIES
     const inputsHost = document.getElementById("categoryInputs");
@@ -577,18 +587,25 @@
       return counts;
     }
 
+    function formatRate(rate) {
+      // Shows a rate as £1, £0.05, £0.012, £0.001 — no ugly trailing zeros
+      return `£${parseFloat(rate.toFixed(4))}`;
+    }
+
     function syncHiddenFields(counts) {
       CATEGORIES.forEach(c => {
         document.getElementById(`submit-${c.key}`).value =
-          counts[c.key] > 0 ? `${counts[c.key]} × £${c.rate.toFixed(4)} = £${(counts[c.key] * c.rate).toFixed(2)}` : '';
+          counts[c.key] > 0 ? `${counts[c.key]} × ${formatRate(c.rate)} = £${(counts[c.key] * c.rate).toFixed(2)}` : '';
       });
       document.getElementById("submitTotal").value = `£${calculatedTotal.toFixed(2)}`;
+      document.getElementById("submitReference").value = tradeReference;
     }
 
     function calculateValue() {
       const counts = readCounts();
 
       calculatedTotal = CATEGORIES.reduce((sum, c) => sum + (counts[c.key] * c.rate), 0);
+      tradeReference = generateReference();
 
       createConfetti();
 
@@ -610,6 +627,10 @@
         ${achievement}
         <div style="font-size: 0.9rem; margin-top: 10px; color: #666;">
           💰 That's real money in your pocket!
+        </div>
+        <div style="font-size: 0.85rem; margin-top: 14px; color: #666;">
+          📌 Your reference number: <strong>${tradeReference}</strong><br>
+          Save this — it's how we'll find your trade if you get in touch.
         </div>
       `;
 
