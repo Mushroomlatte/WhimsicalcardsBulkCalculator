@@ -73,7 +73,8 @@
     <a href="index.html">Trade Calculator</a> |
     <a href="contact.html">Contact</a> |
     <a href="terms.html">T&Cs</a>
-    <a href="privacy.html">Privacy Policy</a>
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="https://ebay.io/m/1TKnqs" target="_blank" rel="noopener">🛒 Our eBay Store</a>
   </nav>
 
   <div class="thanks-card">
@@ -93,10 +94,20 @@
       document.getElementById("refBox").innerHTML = `
         <div style="background:#f0f4f8;border:2px dashed var(--blue);border-radius:12px;padding:14px 18px;margin:18px 0;">
           <div style="font-size:0.9rem;color:#666;">📌 Your trade reference number</div>
-          <div style="font-size:1.4rem;font-weight:900;color:var(--blue);letter-spacing:1px;">${ref}</div>
+          <div style="font-size:1.4rem;font-weight:900;color:var(--blue);letter-spacing:1px;">${ref}
+            <button type="button" onclick="copyRef()" id="copyRefBtn2" style="margin-left:8px;padding:3px 10px;font-size:0.75rem;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer;vertical-align:middle;">📋 Copy</button>
+          </div>
           <div style="font-size:0.85rem;color:#666;margin-top:4px;">We've also emailed you a copy — but save this just in case!</div>
         </div>
       `;
+      window.copyRef = function() {
+        navigator.clipboard.writeText(ref).then(() => {
+          const btn = document.getElementById("copyRefBtn2");
+          const original = btn.innerText;
+          btn.innerText = "✅ Copied!";
+          setTimeout(() => { btn.innerText = original; }, 1500);
+        }).catch(() => { alert(`Your reference number is: ${ref}`); });
+      };
     }
   </script>
 </body>

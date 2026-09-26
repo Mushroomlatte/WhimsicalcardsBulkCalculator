@@ -305,9 +305,16 @@
   <nav>
     <a href="index.html">Trade Calculator</a> |
     <a href="contact.html">Contact</a> |
-    <a href="terms.html">T&Cs</a>
-    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">T&Cs</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="https://ebay.io/m/1TKnqs" target="_blank" rel="noopener">🛒 Our eBay Store</a>
   </nav>
+
+  <div style="text-align:center; margin: 10px 0 20px;">
+    <a href="https://ebay.io/m/1TKnqs" target="_blank" rel="noopener" style="display:inline-block; background:#fff; border:2px solid var(--blue); border-radius:30px; padding:8px 20px; font-size:0.9rem; font-weight:bold; color:var(--blue); text-decoration:none; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+      🛒 See our real trading history on eBay →
+    </a>
+  </div>
 
   <h1>🎯 Pokémon Bulk Trade Calculator</h1>
   
@@ -361,6 +368,7 @@
       
       <div id="hiddenCategoryFields"></div>
       <input type="hidden" name="Trade Reference" id="submitReference">
+      <input type="hidden" name="Quote Valid Until" id="submitValidUntil">
       <input type="hidden" name="Total Value" id="submitTotal">
       
       <label class="input-label">Your Name:</label>
@@ -431,14 +439,17 @@
     </ul>
 
     <p><strong>4. 📦 Pack Like a Pro</strong></p>
+    <div class="quick-tip" style="margin-bottom:12px;">
+      <strong>⚖️ How much does it weigh?</strong>
+      As a rough guide, <strong>1,000 cards weighs approximately 1.8kg</strong>. So 5,000 cards is roughly 9kg — plan your box and postage accordingly!
+    </div>
     <ul>
-      <li>Best method:
-        <ol>
-          <li>Wrap 100-200 cards with cling film</li>
-          <li>Use sturdy box with padding</li>
-          <li>Prevent movement during transit</li>
-        </ol>
-      </li>
+      <li><strong>Bundle your cards</strong> — wrap stacks of 50, 100 or 200 cards tightly using cling film or printer paper. This stops them sliding around and getting damaged in transit.</li>
+      <li><strong>Use a sturdy box</strong> — for larger bulk, a box-inside-a-box is genuinely worth the extra 2 minutes. We've had parcels arrive split open because the outer box wasn't strong enough for the weight.</li>
+      <li><strong>Pad it out</strong> — bubble wrap, newspaper, or scrunched paper around the bundles so nothing can shift about inside the box.</li>
+      <li><strong>Sort by category if you can</strong> — not essential, but grouping cards to roughly match the calculator's categories speeds up our count and gets you paid faster.</li>
+      <li><strong>📝 Include a note inside the box</strong> with your <strong>name</strong> and your <strong>trade reference number</strong> — this is how we match your parcel to your submission if anything goes astray with the packaging.</li>
+      <li><strong>Insure appropriately</strong> — couriers only cover loss/damage up to whatever value you insure the parcel for. Royal Mail's standard service covers up to £20, "Signed For" up to £50 — if your bulk is worth more than that, it's on you to add extra cover.</li>
     </ul>
   </div>
 
@@ -495,7 +506,9 @@
       { key:"annivEnergyPack",label:"🔋 30th Anniversary Energy Packs",   rate:1.00  },   // £1 each
       { key:"sleeves",        label:"🛡️ ETB Sleeves (sealed pack)",          rate:1.00  },   // £1 per sealed pack
       { key:"pinBadges",      label:"📌 Pin Badges",                      rate:1.00  },   // £1 each
-      { key:"figures",        label:"🧸 Figures",                         rate:3.00  }    // £3 each
+      { key:"figures",        label:"🧸 Figures",                         rate:3.00  },   // £3 each
+      { key:"prizePackNonHolo",label:"🎁 Play Prize Pack Non-Holo",       rate:0.20  },   // 20p each
+      { key:"prizePackHolo",  label:"🎁 Play Prize Pack Holo",            rate:0.50  }    // 50p each
     ];
     /* ============================== END CATEGORIES ============================== */
 
@@ -507,6 +520,19 @@
       const stamp = date.toISOString().slice(2,10).replace(/-/g, ''); // YYMMDD
       const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
       return `WC-${stamp}-${rand}`;
+    }
+
+    function copyReference() {
+      navigator.clipboard.writeText(tradeReference).then(() => {
+        const btn = document.getElementById("copyRefBtn");
+        if (btn) {
+          const original = btn.innerText;
+          btn.innerText = "✅ Copied!";
+          setTimeout(() => { btn.innerText = original; }, 1500);
+        }
+      }).catch(() => {
+        alert(`Your reference number is: ${tradeReference}`);
+      });
     }
 
     function clearAllInputs() {
@@ -656,6 +682,10 @@
         achievement = '<div class="achievement-badge">GREAT START!</div>';
       }
 
+      const validUntil = new Date(Date.now() + 10*24*60*60*1000);
+      const validUntilStr = validUntil.toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+      document.getElementById("submitValidUntil").value = validUntilStr;
+
       document.getElementById("result").innerHTML = `
         <div class="celebration">🎉</div>
         <strong>Your Cards Are Worth:</strong><br>
@@ -665,8 +695,12 @@
           💰 That's real money in your pocket!
         </div>
         <div style="font-size: 0.85rem; margin-top: 14px; color: #666;">
-          📌 Your reference number: <strong>${tradeReference}</strong><br>
-          Save this — it's how we'll find your trade if you get in touch.
+          📌 Your reference number: <strong id="refText">${tradeReference}</strong>
+          <button type="button" onclick="copyReference()" id="copyRefBtn" style="margin-left:8px; padding:3px 10px; font-size:0.8rem; border-radius:6px; border:1px solid #ccc; background:#fff; cursor:pointer;">📋 Copy</button>
+          <br>Save this — it's how we'll find your trade if you get in touch.
+        </div>
+        <div style="font-size: 0.8rem; margin-top: 10px; color: #888;">
+          ⏳ This price is guaranteed if your cards arrive with us by <strong>${validUntilStr}</strong> (10 days from today).
         </div>
       `;
 
