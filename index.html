@@ -372,12 +372,12 @@
       <input type="hidden" name="Total Value" id="submitTotal">
       
       <label class="input-label">Your Name:</label>
-      <input type="text" name="Name" placeholder="Full Name" required><br>
+      <input type="text" name="Name" placeholder="Full Name" autocomplete="name" required><br>
       
       <label class="input-label">Your Email:</label>
-      <input type="email" name="email" placeholder="email@example.com" required><br>
+      <input type="email" name="email" placeholder="email@example.com" autocomplete="email" required><br>
       
-      <button type="submit" id="tradeSubmitBtn" onclick="storeTradeCredit(); this.disabled=true; this.innerText='Sending...';">✅ Submit My Trade!</button>
+      <button type="submit" id="tradeSubmitBtn">✅ Submit My Trade!</button>
     </form>
   </div>
   
@@ -635,7 +635,6 @@
     }
 
     function formatRate(rate) {
-      // Shows a rate as £1, £0.05, £0.012, £0.001 — no ugly trailing zeros
       return `£${parseFloat(rate.toFixed(4))}`;
     }
 
@@ -753,6 +752,16 @@
         prompt('Copy this link to share:', url);
       });
     }
+
+    // Attach event listener to handle form submission without freeze/hang
+    document.getElementById('tradeForm').addEventListener('submit', function(e) {
+      storeTradeCredit();
+      const btn = document.getElementById('tradeSubmitBtn');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerText = 'Sending...';
+      }
+    });
     
     // Initialize progress on page load
     updateProgress();
