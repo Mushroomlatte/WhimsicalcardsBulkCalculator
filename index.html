@@ -363,7 +363,19 @@
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_subject" value="New Trade Request">
       <input type="hidden" name="_next" value="https://mushroomlatte.github.io/WhimsicalcardsBulkCalculator/thanks.html" id="nextUrl">
-      <input type="hidden" name="_autoresponse" value="Thanks for your trade submission to Whimsical Cards! This email confirms we've received it — below is a copy of exactly what you sent us. We'll be in touch within 24 hours with our postal address. Keep your reference number handy in case you need to contact us about this trade.">
+      <input type="hidden" name="_autoresponse" value="Thanks for your trade submission to Whimsical Cards! This email confirms we've received it — below is a copy of exactly what you sent us. We'll be in touch within 24 hours with our postal address.
+
+Your price is guaranteed for 10 days from today — as long as your cards reach us within that window, you'll get the value you were quoted.
+
+HOW TO PACK YOUR CARDS:
+- Bundle cards in stacks of 50, 100 or 200, wrapped in cling film or printer paper.
+- Use a sturdy box (a box-inside-a-box is worth it for larger amounts).
+- Pad it out with bubble wrap or paper so nothing shifts in transit.
+- Write your NAME and TRADE REFERENCE NUMBER on a note inside the box.
+- Use tracked, insured postage — insure to the value of your cards, as standard postage only covers a small amount if something goes wrong.
+- As a rough guide, 1,000 cards weighs about 1.8kg.
+
+By submitting this form you've confirmed you agree to our Terms & Conditions and that your cards are Near Mint to Mint condition to the best of your knowledge. Keep your reference number handy in case you need to contact us about this trade.">
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       
       <div id="hiddenCategoryFields"></div>
@@ -376,6 +388,11 @@
       
       <label class="input-label">Your Email:</label>
       <input type="email" name="email" placeholder="email@example.com" autocomplete="email" required><br>
+      
+      <label style="display:flex; align-items:flex-start; gap:8px; font-size:0.9rem; font-weight:normal; margin:16px 0; cursor:pointer;">
+        <input type="checkbox" name="Agreement" value="I agree to the Terms & Conditions, I am responsible for safely posting my cards to Whimsical Cards, and I confirm my cards are Near Mint to Mint condition to the best of my knowledge." required style="margin-top:3px;">
+        <span>I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a>, I am responsible for safely posting my cards to Whimsical Cards, and I confirm my cards are <strong>Near Mint to Mint condition</strong> to the best of my knowledge.</span>
+      </label>
       
       <button type="submit" id="tradeSubmitBtn">✅ Submit My Trade!</button>
     </form>
